@@ -1,0 +1,587 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Test de Type de Nen</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #333;
+        }
+
+        .container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 700px;
+            width: 90%;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(10px);
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .header h1 {
+            color: #4a5568;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        .header p {
+            color: #718096;
+            font-size: 1.1em;
+        }
+
+        .question-container {
+            margin-bottom: 30px;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: slideIn 0.6s ease forwards;
+        }
+
+        @keyframes slideIn {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .question {
+            background: linear-gradient(135deg, #f7fafc, #edf2f7);
+            border-radius: 15px;
+            padding: 25px;
+            margin-bottom: 20px;
+            border-left: 5px solid #667eea;
+        }
+
+        .question h3 {
+            color: #2d3748;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+        }
+
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .option {
+            background: white;
+            border: 2px solid #e2e8f0;
+            border-radius: 10px;
+            padding: 15px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .option:hover {
+            border-color: #667eea;
+            transform: translateX(5px);
+            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.2);
+        }
+
+        .option.selected {
+            border-color: #667eea;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            transform: scale(1.02);
+        }
+
+        .option::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .option:hover::before {
+            left: 100%;
+        }
+
+        input[type="radio"] {
+            display: none;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(102, 126, 234, 0.3);
+            display: block;
+            margin: 30px auto 0;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 30px rgba(102, 126, 234, 0.4);
+        }
+
+        .btn:disabled {
+            opacity: 0.6;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        .progress-bar {
+            background: #e2e8f0;
+            height: 6px;
+            border-radius: 3px;
+            margin-bottom: 20px;
+            overflow: hidden;
+        }
+
+        .progress {
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            height: 100%;
+            width: 0%;
+            transition: width 0.5s ease;
+            border-radius: 3px;
+        }
+
+        .result {
+            display: none;
+            text-align: center;
+            animation: fadeIn 1s ease;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
+        }
+
+        .result h2 {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .result-description {
+            background: linear-gradient(135deg, #f7fafc, #edf2f7);
+            border-radius: 15px;
+            padding: 25px;
+            margin-top: 20px;
+            border-left: 5px solid #667eea;
+        }
+
+        .nen-abilities {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            margin-top: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        @media (max-width: 600px) {
+            .container {
+                padding: 20px;
+                margin: 20px;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .option {
+                padding: 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🔮 Test de Type de Nen</h1>
+            <p>Découvrez quel type de Nen correspond à votre personnalité dans l'univers de Hunter x Hunter</p>
+        </div>
+
+        <div class="progress-bar">
+            <div class="progress" id="progressBar"></div>
+        </div>
+
+        <div id="quiz">
+            <!-- Questions will be inserted here -->
+        </div>
+
+        <button class="btn" id="nextBtn" onclick="nextQuestion()" disabled>Question Suivante</button>
+        <button class="btn hidden" id="resultBtn" onclick="showResult()">Voir Mon Type de Nen</button>
+
+        <div class="result" id="result">
+            <h2 id="resultType"></h2>
+            <div class="result-description" id="resultDescription"></div>
+            <div class="nen-abilities" id="nenAbilities"></div>
+            <button class="btn" onclick="restartQuiz()">Refaire le Test</button>
+        </div>
+    </div>
+
+    <script>
+        const questions = [
+            {
+                question: "Dans une situation de combat, quelle est votre première réaction ?",
+                options: [
+                    { text: "Foncer directement sur l'ennemi avec force", type: "Renforcement" },
+                    { text: "Analyser la situation et créer un plan détaillé", type: "Matérialisation" },
+                    { text: "Utiliser la ruse et manipuler l'environnement", type: "Manipulation" },
+                    { text: "Attaquer à distance en restant mobile", type: "Émission" },
+                    { text: "Adapter ma stratégie selon l'adversaire", type: "Transmutation" },
+                    { text: "Faire confiance à mon instinct unique", type: "Spécialisation" }
+                ]
+            },
+            {
+                question: "Quel type d'entraînement préférez-vous ?",
+                options: [
+                    { text: "Entraînement physique intensif et répétitif", type: "Renforcement" },
+                    { text: "Étude théorique et création d'outils", type: "Matérialisation" },
+                    { text: "Exercices de concentration et de contrôle mental", type: "Manipulation" },
+                    { text: "Entraînement de précision et de projection", type: "Émission" },
+                    { text: "Exercices de flexibilité et d'adaptation", type: "Transmutation" },
+                    { text: "Méditation et développement de capacités uniques", type: "Spécialisation" }
+                ]
+            },
+            {
+                question: "Comment résolvez-vous les problèmes complexes ?",
+                options: [
+                    { text: "En persévérant jusqu'à trouver une solution", type: "Renforcement" },
+                    { text: "En créant des outils ou systèmes pour m'aider", type: "Matérialisation" },
+                    { text: "En influençant les autres pour qu'ils m'aident", type: "Manipulation" },
+                    { text: "En gardant mes distances et observant", type: "Émission" },
+                    { text: "En changeant d'approche selon la situation", type: "Transmutation" },
+                    { text: "En utilisant des méthodes peu conventionnelles", type: "Spécialisation" }
+                ]
+            },
+            {
+                question: "Si vous pouviez avoir un animal de compagnie, lequel choisiriez-vous ?",
+                options: [
+                    { text: "Un chien loyal et protecteur", type: "Renforcement" },
+                    { text: "Un chat indépendant et observateur", type: "Matérialisation" },
+                    { text: "Un perroquet intelligent qui peut parler", type: "Manipulation" },
+                    { text: "Un faucon libre et rapide", type: "Émission" },
+                    { text: "Un caméléon qui s'adapte à son environnement", type: "Transmutation" },
+                    { text: "Une créature mythique unique", type: "Spécialisation" }
+                ]
+            },
+            {
+                question: "Quelle est votre plus grande force ?",
+                options: [
+                    { text: "Ma détermination et ma force de volonté", type: "Renforcement" },
+                    { text: "Ma capacité à planifier et organiser", type: "Matérialisation" },
+                    { text: "Mon charisme et ma capacité d'influence", type: "Manipulation" },
+                    { text: "Mon indépendance et ma précision", type: "Émission" },
+                    { text: "Ma créativité et ma capacité d'adaptation", type: "Transmutation" },
+                    { text: "Mon intuition et ma vision unique", type: "Spécialisation" }
+                ]
+            },
+            {
+                question: "Quelle couleur vous attire le plus ?",
+                options: [
+                    { text: "Rouge - passion et énergie", type: "Renforcement" },
+                    { text: "Bleu - logique et stabilité", type: "Matérialisation" },
+                    { text: "Violet - mystère et influence", type: "Manipulation" },
+                    { text: "Vert - indépendance et nature", type: "Émission" },
+                    { text: "Jaune - créativité et changement", type: "Transmutation" },
+                    { text: "Noir/Blanc - contraste et unicité", type: "Spécialisation" }
+                ]
+            },
+            {
+                question: "Dans un groupe, quel rôle jouez-vous naturellement ?",
+                options: [
+                    { text: "Le protecteur qui défend le groupe", type: "Renforcement" },
+                    { text: "Le stratège qui planifie les actions", type: "Matérialisation" },
+                    { text: "Le leader qui guide et motive", type: "Manipulation" },
+                    { text: "L'éclaireur qui agit en solitaire", type: "Émission" },
+                    { text: "Le support qui s'adapte aux besoins", type: "Transmutation" },
+                    { text: "Le spécialiste avec des compétences uniques", type: "Spécialisation" }
+                ]
+            },
+            {
+                question: "Comment préférez-vous apprendre de nouvelles compétences ?",
+                options: [
+                    { text: "Par la pratique répétée jusqu'à la maîtrise", type: "Renforcement" },
+                    { text: "En étudiant d'abord la théorie en détail", type: "Matérialisation" },
+                    { text: "En demandant à d'autres de m'enseigner", type: "Manipulation" },
+                    { text: "En observant et expérimentant seul", type: "Émission" },
+                    { text: "En essayant différentes méthodes", type: "Transmutation" },
+                    { text: "En développant ma propre approche", type: "Spécialisation" }
+                ]
+            },
+            {
+                question: "Quelle approche préférez-vous face à l'inconnu ?",
+                options: [
+                    { text: "Affronter directement sans hésitation", type: "Renforcement" },
+                    { text: "Préparer tous les outils nécessaires avant", type: "Matérialisation" },
+                    { text: "Rassembler des alliés et des informations", type: "Manipulation" },
+                    { text: "Observer d'abord depuis une position sûre", type: "Émission" },
+                    { text: "Rester flexible et improviser", type: "Transmutation" },
+                    { text: "Faire confiance à mon instinct particulier", type: "Spécialisation" }
+                ]
+            },
+            {
+                question: "Quel environnement vous inspire le plus ?",
+                options: [
+                    { text: "Une salle d'entraînement ou un gymnase", type: "Renforcement" },
+                    { text: "Une bibliothèque ou un laboratoire", type: "Matérialisation" },
+                    { text: "Un lieu de rassemblement social animé", type: "Manipulation" },
+                    { text: "Un endroit isolé dans la nature", type: "Émission" },
+                    { text: "Un lieu qui change constamment", type: "Transmutation" },
+                    { text: "Un endroit mystérieux et inexploré", type: "Spécialisation" }
+                ]
+            },
+            {
+                question: "Quel est votre style de vie idéal ?",
+                options: [
+                    { text: "Simple et direct, axé sur l'essentiel", type: "Renforcement" },
+                    { text: "Organisé et méthodique avec des routines", type: "Matérialisation" },
+                    { text: "Social et entouré de personnes influentes", type: "Manipulation" },
+                    { text: "Indépendant avec beaucoup d'espace personnel", type: "Émission" },
+                    { text: "Varié et plein de nouvelles expériences", type: "Transmutation" },
+                    { text: "Unique et en marge des conventions", type: "Spécialisation" }
+                ]
+            },
+            {
+                question: "Face à la critique, comment réagissez-vous ?",
+                options: [
+                    { text: "Je m'entraîne plus dur pour m'améliorer", type: "Renforcement" },
+                    { text: "J'analyse objectivement les points à corriger", type: "Matérialisation" },
+                    { text: "Je cherche à comprendre les motivations du critique", type: "Manipulation" },
+                    { text: "Je prends du recul et évalue calmement", type: "Émission" },
+                    { text: "Je change d'approche si nécessaire", type: "Transmutation" },
+                    { text: "Je reste fidèle à ma vision personnelle", type: "Spécialisation" }
+                ]
+            },
+            {
+                question: "Comment gérez-vous le stress ?",
+                options: [
+                    { text: "Par l'activité physique intense", type: "Renforcement" },
+                    { text: "En organisant et planifiant davantage", type: "Matérialisation" },
+                    { text: "En parlant avec d'autres personnes", type: "Manipulation" },
+                    { text: "En m'isolant pour réfléchir seul", type: "Émission" },
+                    { text: "En changeant d'environnement ou d'activité", type: "Transmutation" },
+                    { text: "Par des méthodes personnelles peu communes", type: "Spécialisation" }
+                ]
+            },
+            {
+                question: "Quel type de défi vous motive le plus ?",
+                options: [
+                    { text: "Tester mes limites physiques et mentales", type: "Renforcement" },
+                    { text: "Résoudre des énigmes complexes", type: "Matérialisation" },
+                    { text: "Convaincre quelqu'un de difficile", type: "Manipulation" },
+                    { text: "Atteindre un objectif en totale autonomie", type: "Émission" },
+                    { text: "S'adapter à des situations imprévisibles", type: "Transmutation" },
+                    { text: "Accomplir quelque chose d'impossible", type: "Spécialisation" }
+                ]
+            }
+        ];
+
+        const nenTypes = {
+            "Renforcement": {
+                description: "Les Renforceurs incarnent la pure détermination et la simplicité efficace. Naturellement honnêtes et directs, ils croient en la force brute et la persévérance comme solutions à tous les problèmes. Leur approche straightforward cache une profondeur émotionnelle remarquable et une loyauté inébranlable envers leurs proches. Ils préfèrent l'action aux paroles et n'hésitent jamais à se mettre en danger pour protéger ce qui leur est cher. Leur optimisme naturel et leur capacité à rebondir après les échecs font d'eux des piliers sur lesquels les autres peuvent s'appuyer.",
+                abilities: "• Augmentation drastique de la force physique et de l'endurance\n• Guérison accélérée et récupération rapide\n• Renforcement d'objets pour les rendre quasi-indestructibles\n• Techniques de combat au corps à corps dévastatrices\n• Défense exceptionnelle contre les attaques physiques et énergétiques\n• Résistance accrue aux poisons et maladies\n• Capacité à transférer leur force à d'autres",
+                characters: "Personnages emblématiques : Gon Freecss (protagoniste déterminé), Uvogin (Brigade Fantôme), Wing (maître de Gon et Killua)",
+                personality: "Traits dominants : Honnêteté, détermination, simplicité, loyauté, optimisme, courage physique"
+            },
+            "Émission": {
+                description: "Les Émetteurs sont des âmes libres qui valorisent leur indépendance par-dessus tout. Naturellement impatients et directs, ils détestent être contraints ou contrôlés et préfèrent agir selon leurs propres termes. Leur tendance à maintenir une distance émotionnelle et physique ne reflète pas un manque d'empathie, mais plutôt un besoin profond de liberté et d'autonomie. Ils excellent dans les situations où ils peuvent utiliser leur mobilité et leur capacité à frapper de loin, évitant les confrontations directes prolongées.",
+                abilities: "• Projection d'aura à très longue distance\n• Attaques énergétiques dévastatrices (beams, orbes)\n• Téléportation personnelle ou d'objets\n• Communication télépathique à distance\n• Contrôle d'objets à distance sans contact\n• Création de portails ou de passages\n• Séparation de l'aura du corps pour des actions autonomes",
+                characters: "Personnages emblématiques : Razor (maître de Greed Island), Leorio Paradinight (futur médecin), Franklin (Brigade Fantôme)",
+                personality: "Traits dominants : Indépendance, impatience, franchise, mobilité, autonomie, esprit libre"
+            },
+            "Manipulation": {
+                description: "Les Manipulateurs sont des stratèges nés qui comprennent intuitivement les dynamiques de pouvoir et d'influence. Sociaux et charismatiques, ils excellent dans l'art de convaincre et de diriger les autres vers leurs objectifs. Leur nature argumentatrice et leur besoin de contrôle peuvent parfois les faire paraître dominateurs, mais ils utilisent généralement ces traits pour le bien du groupe. Ils voient le monde comme un grand échiquier où chaque pièce a son rôle à jouer, et ils excellent à orchestrer ces mouvements complexes.",
+                abilities: "• Contrôle mental direct des personnes\n• Manipulation d'objets inanimés à volonté\n• Création de règles et conditions contraignantes\n• Influence émotionnelle subtile sur les groupes\n• Contrôle d'animaux et de créatures diverses\n• Implantation de suggestions post-hypnotiques\n• Création de systèmes de contrôle automatisés",
+                characters: "Personnages emblématiques : Shalnark (Brigade Fantôme), Illumi Zoldyck (assassin manipulateur), Morel (Chasseur professionnel)",
+                personality: "Traits dominants : Charisme, sens du contrôle, sociabilité, argumentation, leadership, stratégie"
+            },
+            "Transmutation": {
+                description: "Les Transmuteurs sont les caméléons du monde du Nen, capables de s'adapter à n'importe quelle situation avec une créativité déconcertante. Leur nature imprévisible et parfois trompeuse cache un esprit brillant capable de solutions innovantes. Ils aiment le changement et s'ennuient rapidement des routines, préférant explorer de nouvelles possibilités et repousser les limites de ce qui est possible. Leur approche flexible de la vie les rend parfois difficiles à cerner, mais toujours fascinants.",
+                abilities: "• Modification des propriétés de l'aura (texture, température, densité)\n• Imitation parfaite d'éléments naturels (électricité, feu, caoutchouc)\n• Techniques d'illusion sophistiquées\n• Adaptation instantanée des capacités au combat\n• Création de substances aux propriétés impossibles\n• Camouflage et métamorphose de l'aura\n• Combinaison créative de plusieurs propriétés",
+                characters: "Personnages emblématiques : Hisoka (magicien psychopathe), Killua Zoldyck (assassin électrisant), Machi (Brigade Fantôme)",
+                personality: "Traits dominants : Créativité, imprévisibilité, adaptabilité, ruse, innovation, changement constant"
+            },
+            "Matérialisation": {
+                description: "Les Matérialisateurs sont les architectes du monde du Nen, alliant logique rigoureuse et imagination créatrice. Perfectionnistes dans l'âme, ils planifient méticuleusement chaque détail avant d'agir et n'acceptent jamais un travail à moitié fait. Leur approche méthodique et leur besoin d'ordre peuvent parfois les faire paraître rigides, mais cette discipline leur permet de créer des objets et des systèmes d'une complexité extraordinaire. Ils voient chaque problème comme un puzzle à résoudre avec les bons outils.",
+                abilities: "• Création d'objets complexes aux propriétés uniques\n• Armes et outils spécialisés parfaitement adaptés\n• Espaces de stockage dimensionnels\n• Objets évolutifs qui s'améliorent avec l'usage\n• Constructions architecturales temporaires ou permanentes\n• Systèmes mécaniques autonomes\n• Réplication d'objets existants avec améliorations",
+                characters: "Personnages emblématiques : Kurapika (vengeur aux chaînes), Shizuku (aspirateur vivant), Kortopi (copieur de la Brigade)",
+                personality: "Traits dominants : Logique, organisation, perfectionnisme, méthode, planification, précision"
+            },
+            "Spécialisation": {
+                description: "Les Spécialisateurs sont les véritables énigmes du monde du Nen, possédant des capacités qui défient toute classification traditionnelle. Individualistes par nature, ils marchent sur leur propre chemin et développent des pouvoirs qui reflètent leur personnalité unique et souvent complexe. Leur charisme naturel et leur excentricité les distinguent dans toute foule, mais leur vraie force réside dans leur capacité à transcender les règles normales du Nen. Ils sont souvent des visionnaires incompris, capables de réalisations que personne d'autre ne pourrait accomplir.",
+                abilities: "• Capacités totalement uniques défiant la logique\n• Pouvoirs évoluant de manière imprévisible\n• Techniques impossibles à reproduire ou comprendre\n• Abilities liées à des conditions ou émotions spéciales\n• Manipulation de concepts abstraits (temps, destin, mémoire)\n• Fusion de plusieurs types de Nen en une seule technique\n• Création de phénomènes surnaturels inexplicables",
+                characters: "Personnages emblématiques : Chrollo Lucilfer (voleur de talents), Neon Nostrade (prophétesse), Meruem (Roi des Chimères), Kurapika (yeux écarlates)",
+                personality: "Traits dominants : Individualisme, charisme, excentricité, vision unique, mystère, transcendance"
+            }
+        };
+
+        let currentQuestion = 0;
+        let answers = {};
+        let scores = {
+            "Renforcement": 0,
+            "Émission": 0,
+            "Manipulation": 0,
+            "Transmutation": 0,
+            "Matérialisation": 0,
+            "Spécialisation": 0
+        };
+
+        function loadQuestion() {
+            const quiz = document.getElementById('quiz');
+            const question = questions[currentQuestion];
+            
+            quiz.innerHTML = `
+                <div class="question-container">
+                    <div class="question">
+                        <h3>Question ${currentQuestion + 1}/${questions.length}</h3>
+                        <p>${question.question}</p>
+                    </div>
+                    <div class="options">
+                        ${question.options.map((option, index) => `
+                            <label class="option" for="q${currentQuestion}_${index}">
+                                <input type="radio" id="q${currentQuestion}_${index}" name="q${currentQuestion}" value="${option.type}">
+                                ${option.text}
+                            </label>
+                        `).join('')}
+                    </div>
+                </div>
+            `;
+
+            // Add event listeners
+            const options = document.querySelectorAll('input[type="radio"]');
+            options.forEach(option => {
+                option.addEventListener('change', function() {
+                    // Remove selected class from all options
+                    document.querySelectorAll('.option').forEach(opt => opt.classList.remove('selected'));
+                    // Add selected class to chosen option
+                    this.parentElement.classList.add('selected');
+                    
+                    answers[currentQuestion] = this.value;
+                    document.getElementById('nextBtn').disabled = false;
+                });
+            });
+
+            updateProgress();
+        }
+
+        function updateProgress() {
+            const progress = ((currentQuestion) / questions.length) * 100;
+            document.getElementById('progressBar').style.width = progress + '%';
+        }
+
+        function nextQuestion() {
+            if (currentQuestion < questions.length - 1) {
+                currentQuestion++;
+                loadQuestion();
+                document.getElementById('nextBtn').disabled = true;
+            } else {
+                document.getElementById('nextBtn').classList.add('hidden');
+                document.getElementById('resultBtn').classList.remove('hidden');
+                document.getElementById('progressBar').style.width = '100%';
+            }
+        }
+
+        function calculateResult() {
+            // Reset scores
+            Object.keys(scores).forEach(key => scores[key] = 0);
+            
+            // Calculate scores
+            Object.values(answers).forEach(answer => {
+                scores[answer]++;
+            });
+
+            // Find the highest score
+            let maxScore = 0;
+            let resultType = "";
+            
+            Object.entries(scores).forEach(([type, score]) => {
+                if (score > maxScore) {
+                    maxScore = score;
+                    resultType = type;
+                }
+            });
+
+            return resultType;
+        }
+
+        function showResult() {
+            const resultType = calculateResult();
+            const result = nenTypes[resultType];
+            
+            document.getElementById('quiz').style.display = 'none';
+            document.getElementById('resultBtn').style.display = 'none';
+            
+            document.getElementById('resultType').textContent = `Votre type de Nen : ${resultType}`;
+            document.getElementById('resultDescription').innerHTML = `
+                <h4>Description de votre personnalité :</h4>
+                <p>${result.description}</p>
+                <br>
+                <h4>Traits de personnalité dominants :</h4>
+                <p><em>${result.personality}</em></p>
+                <br>
+                <p><strong>${result.characters}</strong></p>
+            `;
+            document.getElementById('nenAbilities').innerHTML = `
+                <h4>Capacités typiques :</h4>
+                <pre style="white-space: pre-line; font-family: Arial, sans-serif;">${result.abilities}</pre>
+            `;
+            
+            document.getElementById('result').style.display = 'block';
+        }
+
+        function restartQuiz() {
+            currentQuestion = 0;
+            answers = {};
+            scores = {
+                "Renforcement": 0,
+                "Émission": 0,
+                "Manipulation": 0,
+                "Transmutation": 0,
+                "Matérialisation": 0,
+                "Spécialisation": 0
+            };
+            
+            document.getElementById('quiz').style.display = 'block';
+            document.getElementById('result').style.display = 'none';
+            document.getElementById('nextBtn').classList.remove('hidden');
+            document.getElementById('nextBtn').disabled = true;
+            document.getElementById('resultBtn').classList.add('hidden');
+            
+            loadQuestion();
+        }
+
+        // Initialize the quiz
+        loadQuestion();
+    </script>
+</body>
+</html>
