@@ -341,6 +341,180 @@ const questions = [
       },
     ],
   },
+  {
+    question: "Quelle est votre philosophie de vie ?",
+    options: [
+      {
+        text: "La force et la persévérance triomphent toujours",
+        type: "Renforcement",
+      },
+      {
+        text: "Tout peut être compris et amélioré",
+        type: "Matérialisation",
+      },
+      {
+        text: "Les relations humaines sont la clé du succès",
+        type: "Manipulation",
+      },
+      {
+        text: "La liberté personnelle est sacrée",
+        type: "Émission",
+      },
+      {
+        text: "Le changement est la seule constante",
+        type: "Transmutation",
+      },
+      {
+        text: "Chacun a sa propre voie unique à suivre",
+        type: "Spécialisation",
+      },
+    ],
+  },
+  {
+    question: "Comment vous préparez-vous pour un examen important ?",
+    options: [
+      {
+        text: "En étudiant de manière intensive et répétitive",
+        type: "Renforcement",
+      },
+      {
+        text: "En créant des fiches et des plans d'étude détaillés",
+        type: "Matérialisation",
+      },
+      {
+        text: "En formant un groupe d'étude avec d'autres",
+        type: "Manipulation",
+      },
+      {
+        text: "En étudiant seul dans un endroit calme",
+        type: "Émission",
+      },
+      {
+        text: "En alternant différentes méthodes d'apprentissage",
+        type: "Transmutation",
+      },
+      {
+        text: "En suivant mon propre rythme naturel",
+        type: "Spécialisation",
+      },
+    ],
+  },
+  {
+    question: "Quel type de film ou livre préférez-vous ?",
+    options: [
+      {
+        text: "Action et aventure avec des héros courageux",
+        type: "Renforcement",
+      },
+      {
+        text: "Science-fiction avec des concepts complexes",
+        type: "Matérialisation",
+      },
+      {
+        text: "Drames psychologiques sur les relations humaines",
+        type: "Manipulation",
+      },
+      {
+        text: "Westerns ou récits de voyage en solitaire",
+        type: "Émission",
+      },
+      {
+        text: "Fantasy avec des mondes en constante évolution",
+        type: "Transmutation",
+      },
+      {
+        text: "Histoires mystérieuses et surnaturelles",
+        type: "Spécialisation",
+      },
+    ],
+  },
+  {
+    question: "Comment réagissez-vous face à l'échec ?",
+    options: [
+      {
+        text: "Je redouble d'efforts et recommence",
+        type: "Renforcement",
+      },
+      {
+        text: "J'analyse mes erreurs pour mieux les comprendre",
+        type: "Matérialisation",
+      },
+      {
+        text: "Je cherche du soutien auprès d'autres personnes",
+        type: "Manipulation",
+      },
+      {
+        text: "Je prends du temps pour réfléchir en solitude",
+        type: "Émission",
+      },
+      {
+        text: "Je change complètement d'approche",
+        type: "Transmutation",
+      },
+      {
+        text: "Je considère que c'est une leçon unique",
+        type: "Spécialisation",
+      },
+    ],
+  },
+  {
+    question: "Quel est votre rapport au temps ?",
+    options: [
+      {
+        text: "Je vis intensément le moment présent",
+        type: "Renforcement",
+      },
+      {
+        text: "Je planifie méticuleusement l'avenir",
+        type: "Matérialisation",
+      },
+      {
+        text: "J'investis du temps dans mes relations",
+        type: "Manipulation",
+      },
+      {
+        text: "Je valorise mon temps personnel",
+        type: "Émission",
+      },
+      {
+        text: "Je m'adapte selon les circonstances",
+        type: "Transmutation",
+      },
+      {
+        text: "J'ai ma propre perception du temps",
+        type: "Spécialisation",
+      },
+    ],
+  },
+  {
+    question: "Si vous étiez un élément naturel, lequel seriez-vous ?",
+    options: [
+      {
+        text: "Le feu - puissant et destructeur",
+        type: "Renforcement",
+      },
+      {
+        text: "La terre - stable et constructive",
+        type: "Matérialisation",
+      },
+      {
+        text: "L'eau - fluide et influente",
+        type: "Manipulation",
+      },
+      {
+        text: "L'air - libre et insaisissable",
+        type: "Émission",
+      },
+      {
+        text: "La foudre - imprévisible et changeante",
+        type: "Transmutation",
+      },
+      {
+        text: "L'éther - mystérieux et unique",
+        type: "Spécialisation",
+      },
+    ],
+  },
 ];
 
 export default questions;
