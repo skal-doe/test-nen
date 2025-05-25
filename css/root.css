@@ -1,0 +1,169 @@
+:root {
+  --color-white: #fff;
+  --color-black: #000;
+
+  --color-bg-500: #030711;
+
+  --color-zinc-50: #f7f7f7;
+  --color-zinc-100: #f0f1f2;
+  --color-zinc-200: #d9dbde;
+  --color-zinc-300: #c3c5c9;
+  --color-zinc-400: #999ba3;
+  --color-zinc-500: #71717b;
+  --color-zinc-600: #5b5b6e;
+  --color-zinc-700: #3f3f5c;
+  --color-zinc-800: #29294a;
+  --color-zinc-900: #171738;
+  --color-zinc-950: #0a0a24;
+
+  --color-amber-50: #fffcf2;
+  --color-amber-100: #fff9e6;
+  --color-amber-200: #fff0bf;
+  --color-amber-300: #ffe499;
+  --color-amber-400: #fcc24c;
+  --color-amber-500: #fd9a00;
+  --color-amber-600: #e38400;
+  --color-amber-700: #bd6500;
+  --color-amber-800: #964b00;
+  --color-amber-900: #733400;
+  --color-amber-950: #4a1e00;
+
+  /* gon */
+  --color-gon-light-green-50: #f6faf2;
+  --color-gon-light-green-100: #eff7e9;
+  --color-gon-light-green-200: #d3ebc5;
+  --color-gon-light-green-300: #b8e0a6;
+  --color-gon-light-green-400: #7bc76d;
+  --color-gon-light-green-500: #3faf3f;
+  --color-gon-light-green-600: #339e33;
+  --color-gon-light-green-700: #248524;
+  --color-gon-light-green-800: #176917;
+  --color-gon-light-green-900: #0d4f0d;
+  --color-gon-light-green-950: #053305;
+
+  --color-gon-kaki-green-50: #f8faf0;
+  --color-gon-kaki-green-100: #f2f5e4;
+  --color-gon-kaki-green-200: #dae3b8;
+  --color-gon-kaki-green-300: #c2d192;
+  --color-gon-kaki-green-400: #96b054;
+  --color-gon-kaki-green-500: #6b8e23;
+  --color-gon-kaki-green-600: #5c801d;
+  --color-gon-kaki-green-700: #476b14;
+  --color-gon-kaki-green-800: #34570d;
+  --color-gon-kaki-green-900: #224007;
+  --color-gon-kaki-green-950: #132903;
+
+  /* kilua */
+  --color-kilua-blue-50: #fcffff;
+  --color-kilua-blue-100: #f7fcfc;
+  --color-kilua-blue-200: #ebf8fa;
+  --color-kilua-blue-300: #dcf0f5;
+  --color-kilua-blue-400: #c5e4ed;
+  --color-kilua-blue-500: #add8e6;
+  --color-kilua-blue-600: #8cbccf;
+  --color-kilua-blue-700: #6091ab;
+  --color-kilua-blue-800: #3e6b8a;
+  --color-kilua-blue-900: #234866;
+  --color-kilua-blue-950: #0f2842;
+
+  --color-kilua-purple-50: #F7EDFA;
+  --color-kilua-purple-100: #EDDAF2;
+  --color-kilua-purple-200: #D1A8E0;
+  --color-kilua-purple-300: #B57ACC;
+  --color-kilua-purple-400: #7F32A8;
+  --color-kilua-purple-500: #4B0082;
+  --color-kilua-purple-600: #410075;
+  --color-kilua-purple-700: #320061;
+  --color-kilua-purple-800: #25004F;
+  --color-kilua-purple-900: #18003B;
+  --color-kilua-purple-950: #0F0026;
+
+  /* kurapika */
+  --color-kurapika-gold-50: #FFFEF2;
+  --color-kurapika-gold-100: #FFFDE6;
+  --color-kurapika-gold-200: #FFF9BF;
+  --color-kurapika-gold-300: #FFF599;
+  --color-kurapika-gold-400: #FFE74D;
+  --color-kurapika-gold-500: #FFD700;
+  --color-kurapika-gold-600: #E6B800;
+  --color-kurapika-gold-700: #BF8F00;
+  --color-kurapika-gold-800: #996900;
+  --color-kurapika-gold-900: #734700;
+  --color-kurapika-gold-950: #4A2900;
+
+  --color-kurapika-scarlet-eyes-50: #FFF9F2;
+  --color-kurapika-scarlet-eyes-100: #FFF3E6;
+  --color-kurapika-scarlet-eyes-200: #FFDDBF;
+  --color-kurapika-scarlet-eyes-300: #FFC299;
+  --color-kurapika-scarlet-eyes-400: #FF7C4D;
+  --color-kurapika-scarlet-eyes-500: #FF2400;
+  --color-kurapika-scarlet-eyes-600: #E61F00;
+  --color-kurapika-scarlet-eyes-700: #BF1600;
+  --color-kurapika-scarlet-eyes-800: #990F00;
+  --color-kurapika-scarlet-eyes-900: #730B00;
+  --color-kurapika-scarlet-eyes-950: #4A0600;
+
+  /* Leorio */
+  --color-leorio-50: #FAF7F0;
+  --color-leorio-100: #F5EEDF;
+  --color-leorio-200: #E3D1B3;
+  --color-leorio-300: #D1B58A;
+  --color-leorio-400: #B07B46;
+  --color-leorio-500: #8B4513;
+  --color-leorio-600: #803D11;
+  --color-leorio-700: #692D0A;
+  --color-leorio-800: #542107;
+  --color-leorio-900: #401604;
+  --color-leorio-950: #290C02;
+
+  --color-leorio-yellow-50: #FFFEF7;
+  --color-leorio-yellow-100: #FFFDF0;
+  --color-leorio-yellow-200: #FFFAD6;
+  --color-leorio-yellow-300: #FFF5BD;
+  --color-leorio-yellow-400: #FFEA8C;
+  --color-leorio-yellow-500: #FFDB58;
+  --color-leorio-yellow-600: #E6BE49;
+  --color-leorio-yellow-700: #BF9232;
+  --color-leorio-yellow-800: #996D20;
+  --color-leorio-yellow-900: #734912;
+  --color-leorio-yellow-950: #4A2907;
+
+  /* Hisoka */
+  --color-hisoka-hot-pink-50: #FFF7FD;
+  --color-hisoka-hot-pink-100: #FFF0FB;
+  --color-hisoka-hot-pink-200: #FFD9F3;
+  --color-hisoka-hot-pink-300: #FFC2EA;
+  --color-hisoka-hot-pink-400: #FF96D2;
+  --color-hisoka-hot-pink-500: #FF69B4;
+  --color-hisoka-hot-pink-600: #E6559B;
+  --color-hisoka-hot-pink-700: #BF3B74;
+  --color-hisoka-hot-pink-800: #992654;
+  --color-hisoka-hot-pink-900: #731537;
+  --color-hisoka-hot-pink-950: #4A091D;
+
+  --color-hisoka-blue-50: #F2FDFF;
+  --color-hisoka-blue-100: #E6FCFF;
+  --color-hisoka-blue-200: #BFF5FF;
+  --color-hisoka-blue-300: #99ECFF;
+  --color-hisoka-blue-400: #4DD8FF;
+  --color-hisoka-blue-500: #00BFFF;
+  --color-hisoka-blue-600: #00A4E6;
+  --color-hisoka-blue-700: #007CBF;
+  --color-hisoka-blue-800: #005C99;
+  --color-hisoka-blue-900: #003F73;
+  --color-hisoka-blue-950: #00244A;
+
+
+  /* 
+    Ren (Renforcement) : Rouge (#FF0000)
+    Ten (Émission) : Jaune (#FFFF00)
+    Zetsu (Dissimulation) : Bleu (#0000FF)
+    Hatsu (Spécialisation) : Variable (arc-en-ciel 🌈)
+  */
+  
+  --color-nen-ren: #FF0000;
+  --color-nen-ten: #FFFF00;
+  --color-nen-zetsu: #0000FF;
+  --color-nen-hatsu: #FFFF00;
+
+}
